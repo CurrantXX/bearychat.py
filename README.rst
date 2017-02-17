@@ -270,6 +270,38 @@ Examples
         loop.send(message.refer("Pardon?"))
 
 
+- Open API
+
+.. code:: python
+
+    #!/usr/bin/python
+    # -*- coding: utf-8 -*-
+    from bearychat.api import base, channel
+    
+    base.set_base_path("https://api.bearychat.com")
+    base.set_auth("ca340d305f7b799cdcd0f5c3b43ce0a4")
+
+
+    def get_channel_info(channel_id):
+        resp = channel.info({'channel_id': channel_id})  # requests.Respons
+        print(resp.status_code)
+        data = resp.json()
+        print(data)
+        return data
+
+        
+    def get_channel_list():
+        resp = channel.list()
+        print(resp.status_code)
+        data = resp.json()
+        print(data)
+        return data
+
+
+    channel_list = get_channel_list()
+    get_channel_info(channel_list[0]['id'])
+
+
 License
 -------
 
